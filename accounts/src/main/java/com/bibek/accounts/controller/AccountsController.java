@@ -5,6 +5,7 @@ import com.bibek.accounts.dto.CustomerDto;
 import com.bibek.accounts.dto.ResponseDto;
 import com.bibek.accounts.service.IAccountsService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -48,7 +49,8 @@ public class AccountsController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<ResponseDto> deleteAccountDetails(@RequestParam String mobileNumber) {
+    public ResponseEntity<ResponseDto> deleteAccountDetails(@RequestParam @Pattern(regexp = "(^$|[0-9]{10})", message = "Invalid mobile number format")
+                                                                String mobileNumber) {
         boolean isDeleted = accountsService.deleteAccount(mobileNumber);
         if(isDeleted) {
             return ResponseEntity
