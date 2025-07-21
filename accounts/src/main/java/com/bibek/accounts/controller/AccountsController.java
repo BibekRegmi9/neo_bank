@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Accounts", description = "Accounts APIs")
 @RestController
-@RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(path = "/api/v1/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
 @AllArgsConstructor
 @Validated
 public class AccountsController {
