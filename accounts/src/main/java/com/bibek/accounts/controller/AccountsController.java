@@ -2,10 +2,14 @@ package com.bibek.accounts.controller;
 
 import com.bibek.accounts.constants.AccountsConstants;
 import com.bibek.accounts.dto.CustomerDto;
+import com.bibek.accounts.dto.ErrorResponseDto;
 import com.bibek.accounts.dto.ResponseDto;
 import com.bibek.accounts.service.IAccountsService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
@@ -46,6 +50,27 @@ public class AccountsController {
         return ResponseEntity.status(HttpStatus.OK).body(customerDto);
     }
 
+    @Operation(
+            summary = "Update account details for the given customer",
+            description = "Updates account information based on the provided customer details."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Account updated successfully",
+                    content = @Content(schema = @Schema(implementation = ResponseDto.class))
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description = "Account update failed",
+                    content = @Content(schema = @Schema(implementation = ResponseDto.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "An internal server error occurred. Contact the dev team.",
+                    content = @Content(schema = @Schema(implementation = ErrorResponseDto.class))
+            )
+    })
     @PutMapping("/update")
     public ResponseEntity<ResponseDto> updateAccountDetails(@Valid @RequestBody CustomerDto customerDto) {
         boolean isUpdated = accountsService.updateAccount(customerDto);
