@@ -16,3 +16,14 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+build:
+  version: "1.0"
+
+accounts:
+  message: Hi! I am Accounts Service
+  contactDetails:
+    name: "Bibek"
+    email: "bibek@gmail.com"
+  onCallSupport:
+    -(555) 555-1234
