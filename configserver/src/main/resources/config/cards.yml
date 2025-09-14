@@ -1,0 +1,12 @@
+
+build:
+  version: "1.0"
+
+accounts:
+  message: Hi! I am cards Service Local
+  contactDetails:
+    name: "Bibek"
+    email: "bibek@gmail.com"
+  onCallSupport:
+    -(555) 555-1234
+
