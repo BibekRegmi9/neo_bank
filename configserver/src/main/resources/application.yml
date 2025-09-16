@@ -17,8 +17,22 @@ spring:
           clone-on-start: true
           force-pull: true
 
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
 encrypt:
   key: "hdg7Hj864hGJJUnhgflkfj48fhM7G9"
 
 server:
   port: 8071
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
